@@ -40,7 +40,7 @@ public final class CiudadDTO {
         return departamento;
     }
 
-    public CiudadDTO setDepartamento(final DepartamentoDTO departamento) {
+    public final CiudadDTO setDepartamento(final DepartamentoDTO departamento) {
         this.departamento = departamento;
         return this;
     }
