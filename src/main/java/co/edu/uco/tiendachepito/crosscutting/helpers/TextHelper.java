@@ -9,7 +9,7 @@ public final class TextHelper {
     }
 
     public static final boolean isNull(final String string) {
-        return ObjectHelper.getObjectHelper().isNull(string);
+        return getObjectHelper().isNull(string);
     }
 
     public static final boolean isNullOrEmpty(final String string) {

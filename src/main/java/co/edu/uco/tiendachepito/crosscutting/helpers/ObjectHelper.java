@@ -10,7 +10,7 @@ public final class ObjectHelper {
         return instance;
     }
 
-    public final <T> boolean isNull(T object) {
+    public final <T> boolean isNull(final T object) {
         return object == null;
     }
 

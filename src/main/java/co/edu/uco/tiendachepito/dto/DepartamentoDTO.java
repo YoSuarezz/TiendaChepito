@@ -19,31 +19,36 @@ public final class DepartamentoDTO {
         setPais(pais);
     }
 
+    public static final DepartamentoDTO build() {
+        return new DepartamentoDTO();
+    }
+
     public final int getId() {
         return id;
     }
 
-    public final void setId(final int id) {
+    public final DepartamentoDTO setId(final int id) {
         this.id = id;
+        return this;
     }
 
     public final String getNombre() {
         return nombre;
     }
 
-    public final void setNombre(final String nombre) {
+    public final DepartamentoDTO setNombre(final String nombre) {
         this.nombre = TextHelper.applyTrim(nombre);
+        return this;
     }
 
-    public static final DepartamentoDTO build() {
-        return new DepartamentoDTO();
-    }
+
 
     public final PaisDTO getPais() {
         return pais;
     }
 
-    public final void setPais(final PaisDTO pais) {
+    public final DepartamentoDTO setPais(final PaisDTO pais) {
         this.pais = ObjectHelper.getObjectHelper().getDefault(pais, PaisDTO.build());
+        return this;
     }
 }

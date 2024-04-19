@@ -1,5 +1,6 @@
 package co.edu.uco.tiendachepito.dto;
 
+import co.edu.uco.tiendachepito.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.tiendachepito.crosscutting.helpers.TextHelper;
 
 public final class CiudadDTO {
@@ -18,30 +19,38 @@ public final class CiudadDTO {
         setDepartamento(departamento);
     }
 
-    public int getId() {
+    public static final CiudadDTO build() {
+        return new CiudadDTO();
+    }
+
+    public final int getId() {
         return id;
     }
 
-    public CiudadDTO setId(final int id) {
+    public final CiudadDTO setId(final int id) {
         this.id = id;
         return this;
     }
 
-    public String getNombre() {
+    public final String getNombre() {
         return nombre;
     }
 
-    public CiudadDTO setNombre(final String nombre) {
-        this.nombre = nombre;
+    public final CiudadDTO setNombre(final String nombre) {
+        this.nombre = TextHelper.applyTrim(nombre);
         return this;
     }
 
-    public DepartamentoDTO getDepartamento() {
+    public final DepartamentoDTO getDepartamento() {
         return departamento;
     }
 
     public final CiudadDTO setDepartamento(final DepartamentoDTO departamento) {
-        this.departamento = departamento;
+        this.departamento = ObjectHelper.getObjectHelper().getDefault(departamento, DepartamentoDTO.build());
         return this;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(CiudadDTO.build().getDepartamento().getPais().getNombre());
     }
 }
