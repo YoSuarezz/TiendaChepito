@@ -50,7 +50,4 @@ public final class CiudadDTO {
         return this;
     }
 
-    public static void main(String[] args) {
-        System.out.println(CiudadDTO.build().getDepartamento().getPais().getNombre());
-    }
 }
