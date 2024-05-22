@@ -1,4 +1,4 @@
-package co.edu.uco.tiendachepito.data.dao.sql.azuresql;
+package co.edu.uco.tiendachepito.data.dao.sql;
 
 import java.sql.Connection;
 

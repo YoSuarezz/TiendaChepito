@@ -1,4 +1,4 @@
-package co.edu.uco.tiendachepito.data.dao.sql.azuresql;
+package co.edu.uco.tiendachepito.data.dao.sql;
 
 import co.edu.uco.tiendachepito.data.dao.PaisDAO;
 import co.edu.uco.tiendachepito.entity.PaisEntity;
