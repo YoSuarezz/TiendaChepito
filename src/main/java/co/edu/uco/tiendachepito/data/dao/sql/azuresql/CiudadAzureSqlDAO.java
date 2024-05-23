@@ -1,6 +1,7 @@
-package co.edu.uco.tiendachepito.data.dao.sql;
+package co.edu.uco.tiendachepito.data.dao.sql.azuresql;
 
 import co.edu.uco.tiendachepito.data.dao.CiudadDAO;
+import co.edu.uco.tiendachepito.data.dao.sql.SqlConnection;
 import co.edu.uco.tiendachepito.entity.CiudadEntity;
 import java.sql.Connection;
 import java.util.List;
