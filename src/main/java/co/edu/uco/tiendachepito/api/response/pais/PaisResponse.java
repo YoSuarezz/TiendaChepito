@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaisResponse extends Response<PaisDTO> {
+
     public static final PaisResponse build(final List<String> mensajes, final List<PaisDTO> datos) {
 
         PaisResponse instance = new PaisResponse();

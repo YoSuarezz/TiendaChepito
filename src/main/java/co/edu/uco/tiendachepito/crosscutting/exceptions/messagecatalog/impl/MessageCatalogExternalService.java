@@ -1,14 +1,14 @@
 package co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import co.edu.uco.tiendachepito.crosscutting.exceptions.custom.CrosscuttingTiendaChepitoException;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.MessageCatalog;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.MessageCatalogStrategy;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.data.CodigoMensaje;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.data.Mensaje;
 import co.edu.uco.tiendachepito.crosscutting.helpers.ObjectHelper;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public final class MessageCatalogExternalService implements MessageCatalog {
 
@@ -17,8 +17,19 @@ public final class MessageCatalogExternalService implements MessageCatalog {
 	@Override
 	public final void inicializar() {
 		mensajes.clear();
-		//mensajes.put(CodigoMensaje.M00007.getIdentificador(),
-				new Mensaje(CodigoMensaje.M00007, "La transacción se ha completado de forma satisfactoria...");
+		mensajes.put(CodigoMensaje.M00023.getIdentificador(), new Mensaje(CodigoMensaje.M00023,
+				"Se ha presentado un problema tratando de realizar un insert de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
+		mensajes.put(CodigoMensaje.M00024.getIdentificador(), new Mensaje(CodigoMensaje.M00024,
+				"Se ha presentado un problema INESPERADO tratando de realizar un insert de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
+		mensajes.put(CodigoMensaje.M00025.getIdentificador(), new Mensaje(CodigoMensaje.M00025,
+				"Se ha presentado un problema tratando de realizar un update de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
+		mensajes.put(CodigoMensaje.M00026.getIdentificador(), new Mensaje(CodigoMensaje.M00026,
+				"Se ha presentado un problema INESPERADO tratando de realizar un update de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
+		mensajes.put(CodigoMensaje.M00027.getIdentificador(), new Mensaje(CodigoMensaje.M00027,
+				"Se ha presentado un problema tratando de realizar un delete de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
+		mensajes.put(CodigoMensaje.M00028.getIdentificador(), new Mensaje(CodigoMensaje.M00028,
+				"Se ha presentado un problema INESPERADO tratando de realizar un delete de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
+
 	}
 
 	@Override
