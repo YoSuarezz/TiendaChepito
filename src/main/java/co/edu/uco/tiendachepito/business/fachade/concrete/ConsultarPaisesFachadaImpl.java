@@ -41,6 +41,4 @@ public final class ConsultarPaisesFachadaImpl implements ConsultarPaisesFachada 
             factory.cerrarConexion();
         }
     }
-
-
 }

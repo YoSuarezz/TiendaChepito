@@ -14,7 +14,7 @@ public final class PaisEntity {
         setNombre(TextHelper.EMPTY);
     }
 
-    private PaisEntity(final int id) {
+    public PaisEntity(final int id) {
         setNombre(TextHelper.EMPTY);
     }
 
@@ -38,11 +38,11 @@ public final class PaisEntity {
         return nombre;
     }
 
-    private final void setId(final int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
-    private final void setNombre(final String nombre) {
+    public final void setNombre(final String nombre) {
         this.nombre = TextHelper.applyTrim(nombre);
     }
 }

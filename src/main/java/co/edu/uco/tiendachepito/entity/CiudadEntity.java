@@ -10,19 +10,19 @@ public final class CiudadEntity {
     private String nombre;
     private DepartamentoEntity departamento;
 
-    private CiudadEntity(final int id, final String nombre, final DepartamentoEntity departamento) {
+    public CiudadEntity(final int id, final String nombre, final DepartamentoEntity departamento) {
         setId(id);
         setNombre(nombre);
         setDepartamento(departamento);
     }
 
-    private CiudadEntity(final int id) {
+    public CiudadEntity(final int id) {
         setId(id);
         setNombre(TextHelper.EMPTY);
         setDepartamento(DepartamentoEntity.build(NumericHelper.ZERO));
     }
 
-    private CiudadEntity() {
+    public CiudadEntity() {
         this(NumericHelper.ZERO, TextHelper.EMPTY, DepartamentoEntity.build(NumericHelper.ZERO));
     }
 

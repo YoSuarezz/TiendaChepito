@@ -10,19 +10,19 @@ public final class DepartamentoEntity {
     private String nombre;
     private PaisEntity pais;
 
-    private DepartamentoEntity(final int id, final String nombre, final PaisEntity pais) {
+    public DepartamentoEntity(final int id) {
+        setId(id);
+        setNombre(TextHelper.EMPTY);
+        setPais(PaisEntity.build());
+    }
+
+    public DepartamentoEntity(final int id, final String nombre, final PaisEntity pais) {
         setId(id);
         setNombre(nombre);
         setPais(pais);
     }
 
-    private DepartamentoEntity(final int id) {
-        setId(id);
-        setNombre(TextHelper.EMPTY);
-        setPais(PaisEntity.build(NumericHelper.ZERO));
-    }
-
-    private DepartamentoEntity() {
+    public DepartamentoEntity() {
         this(NumericHelper.ZERO, TextHelper.EMPTY, PaisEntity.build(NumericHelper.ZERO));
     }
 
@@ -35,7 +35,7 @@ public final class DepartamentoEntity {
     }
 
     public static final DepartamentoEntity build() {
-        return new DepartamentoEntity();
+        return new DepartamentoEntity(NumericHelper.ZERO);
     }
 
     public final int getId() {
@@ -61,7 +61,7 @@ public final class DepartamentoEntity {
     }
 
     public final DepartamentoEntity setPais(final PaisEntity pais) {
-        this.pais = ObjectHelper.getObjectHelper().getDefault(pais, PaisEntity.build(NumericHelper.ZERO));
+        this.pais = ObjectHelper.getObjectHelper().getDefault(pais, PaisEntity.build());
         return this;
     }
 }

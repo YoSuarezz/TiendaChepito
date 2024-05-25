@@ -9,6 +9,7 @@ import co.edu.uco.tiendachepito.entity.DepartamentoEntity;
 
 import java.util.List;
 
+
 public final class CiudadEntityDomainAssembler implements EntityDomainAssembler<CiudadDomain, CiudadEntity> {
 
     private static final EntityDomainAssembler<CiudadDomain,CiudadEntity> instancia = new CiudadEntityDomainAssembler();
@@ -41,4 +42,7 @@ public final class CiudadEntityDomainAssembler implements EntityDomainAssembler<
     public List<CiudadDomain> ensamblarListaDominios(List<CiudadEntity> listaEntidades) {
         return List.of();
     }
+
 }
+
+

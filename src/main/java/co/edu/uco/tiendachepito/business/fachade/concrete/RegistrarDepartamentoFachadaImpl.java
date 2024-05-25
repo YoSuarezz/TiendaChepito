@@ -22,9 +22,9 @@ public final class RegistrarDepartamentoFachadaImpl implements RegistrarDepartam
     public final void ejecutar(DepartamentoDTO departamento) {
         try {
             factory.iniciarTransaccion();
-            var departamentoDomain = DepartamentoDTODomainAssembler.obtenerInstancia().ensamblarDominio(departamento);
+            //var departamentoDomain = DepartamentoDTODomainAssembler.obtenerInstancia().ensamblarDominio(departamento);
             RegistrarDepartamento useCase = new RegistrarDepartamentoImpl(factory);
-            useCase.ejecutar(departamentoDomain);
+            useCase.ejecutar(null);
             factory.confirmarTransaccion();
         } catch (TiendaChepitoException exception) {
             factory.cancelarTransaccion();

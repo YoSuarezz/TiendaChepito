@@ -22,7 +22,7 @@ public final class RegistrarCiudadFachadaImpl implements RegistrarCiudadFachada 
     public final void ejecutar (CiudadDTO ciudad){
         try {
             factory.iniciarTransaccion();
-            var ciudadDomain = CiudadDTODomainAssembler.obtenerInstancia().ensabmblarDominio(ciudad);
+            //var ciudadDomain = CiudadDTODomainAssembler.obtenerInstancia().ensabmblarDominio(ciudad);
             RegistrarCiudad useCase = new RegistrarCiudadImpl(factory);
             useCase.ejecutar(null);
             factory.confirmarTransaccion();
