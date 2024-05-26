@@ -1,7 +1,6 @@
-package co.edu.uco.tiendachepito.business.fachade.concrete;
+package co.edu.uco.tiendachepito.business.facade.concrete;
 
-import co.edu.uco.tiendachepito.business.assembler.dto.concrete.DepartamentoDTODomainAssembler;
-import co.edu.uco.tiendachepito.business.fachade.RegistrarDepartamentoFachada;
+import co.edu.uco.tiendachepito.business.facade.RegistrarDepartamentoFachada;
 import co.edu.uco.tiendachepito.business.usecase.RegistrarDepartamento;
 import co.edu.uco.tiendachepito.business.usecase.concrete.RegistrarDepartamentoImpl;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.TiendaChepitoException;

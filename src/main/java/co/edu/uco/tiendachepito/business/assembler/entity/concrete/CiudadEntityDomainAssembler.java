@@ -9,40 +9,40 @@ import co.edu.uco.tiendachepito.entity.DepartamentoEntity;
 
 import java.util.List;
 
-
 public final class CiudadEntityDomainAssembler implements EntityDomainAssembler<CiudadDomain, CiudadEntity> {
 
-    private static final EntityDomainAssembler<CiudadDomain,CiudadEntity> instancia = new CiudadEntityDomainAssembler();
+    private static final EntityDomainAssembler<CiudadDomain, CiudadEntity> instancia = new CiudadEntityDomainAssembler();
 
-    private static final EntityDomainAssembler<DepartamentoDomain, DepartamentoEntity> departamentoAssembler = new DepartamentoEntityDomainAssembler().obtenerInstancia();
+    private static final EntityDomainAssembler<DepartamentoDomain, DepartamentoEntity> departamentoAssembler = DepartamentoEntityDomainAssembler
+            .obtenerInstancia();
 
-    private CiudadEntityDomainAssembler(){
+    private CiudadEntityDomainAssembler() {
         super();
     }
 
-    public static final EntityDomainAssembler<CiudadDomain, CiudadEntity> obtenerInstancia(){
+    public static final  EntityDomainAssembler<CiudadDomain, CiudadEntity> obtenerInstancia(){
         return instancia;
     }
 
     @Override
-    public CiudadDomain ensamblarDominio(CiudadEntity entity) {
-        var ciudadEntityTemp = ObjectHelper.getObjectHelper().getDefault(entity, CiudadEntity.build());
-        var departamentoDomain = DepartamentoEntityDomainAssembler.obtenerInstancia().ensamblarDominio(ciudadEntityTemp.getDepartamento());
-        return CiudadDomain.crear(ciudadEntityTemp.getId(), ciudadEntityTemp.getNombre(), departamentoDomain);
-    }
+    public final CiudadDomain ensamblarDominio(final CiudadEntity entidad) {
+        var ciudadEntityTmp = ObjectHelper.getObjectHelper().getDefault(entidad, CiudadEntity.build(0));
+        var departamentoDominio = departamentoAssembler.ensamblarDominio(ciudadEntityTmp.getDepartamento());
+
+        return CiudadDomain.crear(ciudadEntityTmp.getId(),
+                ciudadEntityTmp.getNombre(),
+                departamentoDominio);    }
 
     @Override
-    public CiudadEntity ensamblarEntidad(CiudadDomain dominio) {
-        var ciudadDomainTemp = ObjectHelper.getObjectHelper().getDefault(dominio, CiudadDomain.crear());
-        var departamentoEntity = DepartamentoEntityDomainAssembler.obtenerInstancia().ensamblarEntidad(ciudadDomainTemp.getDepartamento());
-        return CiudadEntity.build().setId(ciudadDomainTemp.getId()).setNombre(ciudadDomainTemp.getNombre()).setDepartamento(departamentoEntity);
+    public final CiudadEntity ensamblarEntidad(final CiudadDomain dominio) {
+        var ciudadDomainTmp = ObjectHelper.getObjectHelper().getDefault(dominio,CiudadDomain.crear());
+        var departamentoEntity = departamentoAssembler.ensamblarEntidad(ciudadDomainTmp.getDepartamento());
+
+        return CiudadEntity.build(ciudadDomainTmp.getId(), ciudadDomainTmp.getNombre(), departamentoEntity);
     }
 
     @Override
     public List<CiudadDomain> ensamblarListaDominios(List<CiudadEntity> listaEntidades) {
-        return List.of();
+        return null;
     }
-
 }
-
-

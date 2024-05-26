@@ -1,7 +1,7 @@
-package co.edu.uco.tiendachepito.business.fachade.concrete;
+package co.edu.uco.tiendachepito.business.facade.concrete;
 
 import co.edu.uco.tiendachepito.business.assembler.dto.concrete.CiudadDTODomainAssembler;
-import co.edu.uco.tiendachepito.business.fachade.RegistrarCiudadFachada;
+import co.edu.uco.tiendachepito.business.facade.RegistrarCiudadFachada;
 import co.edu.uco.tiendachepito.business.usecase.RegistrarCiudad;
 import co.edu.uco.tiendachepito.business.usecase.concrete.RegistrarCiudadImpl;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.TiendaChepitoException;
@@ -22,7 +22,7 @@ public final class RegistrarCiudadFachadaImpl implements RegistrarCiudadFachada 
     public final void ejecutar (CiudadDTO ciudad){
         try {
             factory.iniciarTransaccion();
-            //var ciudadDomain = CiudadDTODomainAssembler.obtenerInstancia().ensabmblarDominio(ciudad);
+            var ciudadDomain = CiudadDTODomainAssembler.obtenerInstancia().ensamblarDominio(ciudad);
             RegistrarCiudad useCase = new RegistrarCiudadImpl(factory);
             useCase.ejecutar(null);
             factory.confirmarTransaccion();

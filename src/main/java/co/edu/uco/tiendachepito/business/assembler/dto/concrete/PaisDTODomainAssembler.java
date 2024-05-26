@@ -8,41 +8,41 @@ import co.edu.uco.tiendachepito.dto.PaisDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PaisDTODomainAssembler implements DTODomainAssembler <PaisDomain, PaisDTO> {
+public final class PaisDTODomainAssembler implements DTODomainAssembler<PaisDomain, PaisDTO> {
 
-    private  static final DTODomainAssembler <PaisDomain, PaisDTO> instancia = new PaisDTODomainAssembler();
+    private static final DTODomainAssembler<PaisDomain, PaisDTO> instancia =
+            new PaisDTODomainAssembler();
 
-    PaisDTODomainAssembler(){
+    private PaisDTODomainAssembler(){
         super();
     }
 
-    public static final DTODomainAssembler <PaisDomain, PaisDTO> obtenerInstancia(){
+    public static final DTODomainAssembler<PaisDomain, PaisDTO> obtenerInstancia(){
         return instancia;
     }
 
     @Override
-    public PaisDomain ensamblarDominio(PaisDTO dto) {
+    public final PaisDomain ensamblarDominio(final PaisDTO dto) {
         var paisDtoTmp = ObjectHelper.getObjectHelper().getDefault(dto, new PaisDTO());
         return PaisDomain.crear(paisDtoTmp.getId(), paisDtoTmp.getNombre());
     }
 
     @Override
-    public PaisDTO ensamblarDTO(PaisDomain dominio) {
-        var paisDomainTmp = ObjectHelper.getObjectHelper().getDefault(dominio, new PaisDomain(dominio.getId(), dominio.getNombre()));
-        return PaisDTO.build().setId(paisDomainTmp.getId()).setNombre(paisDomainTmp.getNombre());
-
+    public final PaisDTO ensamblarDTO(final PaisDomain dominio) {
+        var paisDomainTmp = ObjectHelper.getObjectHelper().getDefault(dominio, PaisDomain.crear());
+        return PaisDTO.build().setId(paisDomainTmp.getId()).setNombre(paisDomainTmp.getNombre())    ;
     }
 
     @Override
-    public final List<PaisDTO> ensamblarListaDTO(final List<PaisDomain> listaDominios) {
+    public final List<PaisDTO> ensamblarListaDTO(List<PaisDomain> listaDominios) {
         var listaDominiosTmp = ObjectHelper.getObjectHelper()
                 .getDefault(listaDominios, new ArrayList<PaisDomain>());
         var resultados = new ArrayList<PaisDTO>();
 
-        for (PaisDomain paisDomain : listaDominiosTmp){
+        for (PaisDomain paisDomain : listaDominiosTmp) {
+            var paisDtoTmp = ensamblarDTO(paisDomain);
             resultados.add(ensamblarDTO(paisDomain));
         }
         return resultados;
     }
-
 }

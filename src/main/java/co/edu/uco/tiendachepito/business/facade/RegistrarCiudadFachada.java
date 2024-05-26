@@ -1,4 +1,4 @@
-package co.edu.uco.tiendachepito.business.fachade;
+package co.edu.uco.tiendachepito.business.facade;
 
 import co.edu.uco.tiendachepito.dto.CiudadDTO;
 

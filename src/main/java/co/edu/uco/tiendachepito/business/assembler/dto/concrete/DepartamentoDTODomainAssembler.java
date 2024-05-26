@@ -9,22 +9,40 @@ import co.edu.uco.tiendachepito.dto.PaisDTO;
 
 import java.util.List;
 
-public final class DepartamentoDTODomainAssembler implements DTODomainAssembler<DepartamentoDomain, DepartamentoDTO> {
+public class DepartamentoDTODomainAssembler implements DTODomainAssembler<DepartamentoDomain, DepartamentoDTO> {
 
-    private final PaisDTODomainAssembler paisAssembler = new PaisDTODomainAssembler();
+    private static final DTODomainAssembler<DepartamentoDomain, DepartamentoDTO> instancia =
+            new DepartamentoDTODomainAssembler();
 
-    @Override
-    public DepartamentoDomain ensamblarDominio(DepartamentoDTO dto) {
-        var departamentoDtoTmp = ObjectHelper.getObjectHelper().getDefault(dto, new DepartamentoDTO());
-        PaisDomain paisDomain = paisAssembler.ensamblarDominio(departamentoDtoTmp.getPais());
-        return DepartamentoDomain.crear(departamentoDtoTmp.getId(), departamentoDtoTmp.getNombre(), paisDomain);
+    private static final DTODomainAssembler<PaisDomain, PaisDTO> paisAssembler = PaisDTODomainAssembler
+            .obtenerInstancia();
+
+    private DepartamentoDTODomainAssembler(){
+        super();
+    }
+
+    public static final DTODomainAssembler<DepartamentoDomain, DepartamentoDTO> obtenerInstancia(){
+        return instancia;
     }
 
     @Override
-    public DepartamentoDTO ensamblarDTO(DepartamentoDomain dominio) {
-        var departamentoDomainTmp = ObjectHelper.getObjectHelper().getDefault(dominio, new DepartamentoDomain(dominio.getId(), dominio.getNombre(), dominio.getPais()));
-        PaisDTO paisDTO = paisAssembler.ensamblarDTO(departamentoDomainTmp.getPais());
-        return DepartamentoDTO.build().setId(departamentoDomainTmp.getId()).setNombre(departamentoDomainTmp.getNombre()).setPais(paisDTO);
+    public final DepartamentoDomain ensamblarDominio(final DepartamentoDTO dto) {
+        var departamentoDtoTmp = ObjectHelper.getObjectHelper().getDefault(dto, new DepartamentoDTO());
+        var paisDomain = paisAssembler.ensamblarDominio(departamentoDtoTmp.getPais());
+
+        return DepartamentoDomain.crear(departamentoDtoTmp.getId(), departamentoDtoTmp.getNombre(),
+                paisDomain);
+
+    }
+
+    @Override
+    public final DepartamentoDTO ensamblarDTO( final DepartamentoDomain dominio) {
+        var departamentoDomainTmp = ObjectHelper.getObjectHelper().getDefault(dominio,DepartamentoDomain.crear());
+        var paisDTO = paisAssembler.ensamblarDTO(departamentoDomainTmp.getPais());
+
+        return DepartamentoDTO.build().setId(departamentoDomainTmp.getId())
+                .setNombre(departamentoDomainTmp.getNombre())
+                .setPais(paisDTO);
     }
 
     @Override

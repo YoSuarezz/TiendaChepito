@@ -11,39 +11,40 @@ import co.edu.uco.tiendachepito.data.dao.factory.sql.azuresql.AzureSqlDAOFactory
 
 public abstract class DAOFactory {
 
-	public static final DAOFactory getFactory(final Factory factory) {
+	public static final DAOFactory getFactory(final Factory factory){
+		switch(factory){
+			case AZURE_SQL -> {
+				return new AzureSqlDAOFactory();
+			}
+			case SQL_SERVER -> {
+				var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
+				var mensajeTecnico = "No existe configurada una factoria de datos para una base de datos SQL Server";
 
-		switch (factory) {
-			case AZURE_SQL: {
+				throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario);
+			}
+			case POSTGRESQL -> {
+				var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
+				var mensajeTecnico = "No existe configurada una factoria de datos para una base de datos postgre SQL";
+
+				throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario);
+			}
+			case MYSQL -> {
+				var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
+				var mensajeTecnico = "No existe configurada una factoria de datos para una base de datos MySQL";
+
+				throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario);
+			}
+			case ORACLE -> {
+				var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
+				var mensajeTecnico = "No existe configurada una factoria de datos para una base de datos Oracle";
+
+				throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario);
+			}
+			default ->{
 				return new AzureSqlDAOFactory();
 			}
 		}
-		switch (factory) {
-			case ORACLE: {
-				var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
-				var mensajeTecnico = "No existe configurada una factoria de datos para una base de datos ORACLE";
 
-				throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario);
-			}
-		}
-		switch (factory) {
-			case MYSQL: {
-				var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
-				var mensajeTecnico = "No existe configurada una factoria de datos para una base de datos MYSQL";
-
-				throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario);
-			}
-		}
-		switch (factory) {
-			case POSTGRESQL : {
-				var mensajeUsuario = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00002);
-				var mensajeTecnico = "No existe configurada una factoria de datos para una base de datos POSTGRESQL";
-
-				throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario);
-			}
-		}
-
-		return null;
 	}
 
 	protected abstract void obtenerConexion();

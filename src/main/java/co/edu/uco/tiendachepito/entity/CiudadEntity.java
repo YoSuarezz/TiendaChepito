@@ -1,6 +1,7 @@
 package co.edu.uco.tiendachepito.entity;
 
-import co.edu.uco.tiendachepito.crosscutting.helpers.NumericHelper;
+import static co.edu.uco.tiendachepito.crosscutting.helpers.NumericHelper.ZERO;
+
 import co.edu.uco.tiendachepito.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.tiendachepito.crosscutting.helpers.TextHelper;
 
@@ -10,20 +11,16 @@ public final class CiudadEntity {
     private String nombre;
     private DepartamentoEntity departamento;
 
-    public CiudadEntity(final int id, final String nombre, final DepartamentoEntity departamento) {
+    private CiudadEntity(final int id) {
+        setId(id);
+        setNombre(TextHelper.EMPTY);
+        setDepartamento(DepartamentoEntity.build());
+    }
+
+    private CiudadEntity(final int id, final String nombre, final DepartamentoEntity departamento) {
         setId(id);
         setNombre(nombre);
         setDepartamento(departamento);
-    }
-
-    public CiudadEntity(final int id) {
-        setId(id);
-        setNombre(TextHelper.EMPTY);
-        setDepartamento(DepartamentoEntity.build(NumericHelper.ZERO));
-    }
-
-    public CiudadEntity() {
-        this(NumericHelper.ZERO, TextHelper.EMPTY, DepartamentoEntity.build(NumericHelper.ZERO));
     }
 
     public static final CiudadEntity build(final int id) {
@@ -34,34 +31,32 @@ public final class CiudadEntity {
         return new CiudadEntity(id, nombre, departamento);
     }
 
-    public static final CiudadEntity build() {
-        return new CiudadEntity();
+    protected static final CiudadEntity build() {
+        return new CiudadEntity(ZERO);
+    }
+
+    private final void setId(final int id) {
+        this.id = id;
+    }
+
+    private final void setNombre(final String nombre){
+        this.nombre = TextHelper.applyTrim(nombre);
+    }
+
+    private final void setDepartamento(final DepartamentoEntity departamento) {
+        this.departamento = ObjectHelper.getObjectHelper().getDefault(departamento, DepartamentoEntity.build());
     }
 
     public final int getId() {
         return id;
     }
 
-    public final CiudadEntity setId(final int id) {
-        this.id = id;
-        return this;
-    }
-
     public final String getNombre() {
         return nombre;
-    }
-
-    public final CiudadEntity setNombre(final String nombre) {
-        this.nombre = TextHelper.applyTrim(nombre);
-        return this;
     }
 
     public final DepartamentoEntity getDepartamento() {
         return departamento;
     }
 
-    public final CiudadEntity setDepartamento(final DepartamentoEntity departamento) {
-        this.departamento = ObjectHelper.getObjectHelper().getDefault(departamento, DepartamentoEntity.build(NumericHelper.ZERO));
-        return this;
-    }
 }

@@ -1,8 +1,8 @@
-package co.edu.uco.tiendachepito.business.fachade.concrete;
+package co.edu.uco.tiendachepito.business.facade.concrete;
 
 
 import co.edu.uco.tiendachepito.business.assembler.dto.concrete.PaisDTODomainAssembler;
-import co.edu.uco.tiendachepito.business.fachade.ConsultarPaisesFachada;
+import co.edu.uco.tiendachepito.business.facade.ConsultarPaisesFachada;
 import co.edu.uco.tiendachepito.business.usecase.ConsultarPaises;
 import co.edu.uco.tiendachepito.business.usecase.concrete.ConsultarPaisesImpl;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.TiendaChepitoException;

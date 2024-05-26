@@ -4,26 +4,27 @@ import co.edu.uco.tiendachepito.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.tiendachepito.crosscutting.helpers.TextHelper;
 
 public final class CiudadDTO {
+
     private int id;
     private String nombre;
     private DepartamentoDTO departamento;
 
-    public CiudadDTO() {
+    public CiudadDTO(){
         setNombre(TextHelper.EMPTY);
         setDepartamento(DepartamentoDTO.build());
     }
 
-    public CiudadDTO(final int id, final String nombre, final DepartamentoDTO departamento) {
+    public CiudadDTO(int id, String nombre, DepartamentoDTO departamento) {
         setId(id);
         setNombre(nombre);
         setDepartamento(departamento);
     }
 
-    public static final CiudadDTO build() {
+    public static final CiudadDTO build(){
         return new CiudadDTO();
     }
 
-    public final int getId() {
+    public int getId() {
         return id;
     }
 
@@ -49,5 +50,4 @@ public final class CiudadDTO {
         this.departamento = ObjectHelper.getObjectHelper().getDefault(departamento, DepartamentoDTO.build());
         return this;
     }
-
 }

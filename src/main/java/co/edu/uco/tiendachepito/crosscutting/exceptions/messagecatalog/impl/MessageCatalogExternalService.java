@@ -1,14 +1,14 @@
 package co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import co.edu.uco.tiendachepito.crosscutting.exceptions.custom.CrosscuttingTiendaChepitoException;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.MessageCatalog;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.MessageCatalogStrategy;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.data.CodigoMensaje;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.messagecatalog.data.Mensaje;
 import co.edu.uco.tiendachepito.crosscutting.helpers.ObjectHelper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class MessageCatalogExternalService implements MessageCatalog {
 
@@ -29,6 +29,10 @@ public final class MessageCatalogExternalService implements MessageCatalog {
 				"Se ha presentado un problema tratando de realizar un delete de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
 		mensajes.put(CodigoMensaje.M00028.getIdentificador(), new Mensaje(CodigoMensaje.M00028,
 				"Se ha presentado un problema INESPERADO tratando de realizar un delete de la informacion del pais \"${1}\" en la tabla \"Pais\" en la base de datos Azure SQL..."));
+		mensajes.put(CodigoMensaje.M00029.getIdentificador(), new Mensaje(CodigoMensaje.M00029,
+				"Se ha presentado un problema ejecutando la sentancia SQL de consulta de los paises en la base de datos Azure SQL"));
+		mensajes.put(CodigoMensaje.M00030.getIdentificador(), new Mensaje(CodigoMensaje.M00030,
+				"Se ha presentado un problema INESPERADO ejecutando la sentancia SQL de consulta de los paises en la base de datos Azure SQL"));
 
 	}
 

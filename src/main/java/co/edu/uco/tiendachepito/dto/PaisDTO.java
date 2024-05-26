@@ -2,7 +2,8 @@ package co.edu.uco.tiendachepito.dto;
 
 import co.edu.uco.tiendachepito.crosscutting.helpers.TextHelper;
 
-public final class PaisDTO {
+public final class PaisDTO  {
+
     private int id;
     private String nombre;
 
@@ -11,11 +12,11 @@ public final class PaisDTO {
     }
 
     public PaisDTO(final int id, final String nombre) {
-        setId(id);
-        setNombre(nombre);
+        this.id = id;
+        this.nombre = nombre;
     }
 
-    public static final PaisDTO build() {
+    public static final PaisDTO build(){
         return new PaisDTO();
     }
 

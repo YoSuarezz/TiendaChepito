@@ -101,7 +101,6 @@ public final class PaisAzureSqlDAO extends SqlConnection implements PaisDAO {
 
         final var listaPaises = new ArrayList<PaisEntity>();
         final var sentenciaSql = new StringBuilder();
-
         sentenciaSql.append("SELECT id, nombre ");
         sentenciaSql.append("FROM Pais ");
         sentenciaSql.append("ORDER BY nombre ASC ");
@@ -116,8 +115,8 @@ public final class PaisAzureSqlDAO extends SqlConnection implements PaisDAO {
                 }
 
             }catch (SQLException exception){
-                var mensajeUsuario = "No ha sido posible llevar a cabo la eliminacion de la informacion de los paises. Por favor intente de nuevo y en caso de pérsisitir el problema, comuniquese con el administrador de la Tienda Chepito...";
-                var mensajeTecnico = "Se ha presentado un problema ejecutando la sentancia SQL de consulta de los paises en la base de datos Azure SQL";
+                var mensajeUsuario = "No ha sido posible llevar a cabo la consulta de la informacion de los paises. Por favor intente de nuevo y en caso de pérsisitir el problema, comuniquese con el administrador de la Tienda Chepito...";
+                var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00029);
 
                 throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario, exception);
             }
@@ -125,15 +124,15 @@ public final class PaisAzureSqlDAO extends SqlConnection implements PaisDAO {
         }catch (final DataTiendaChepitoException exception){
             throw exception;
         } catch (SQLException exception){
-            var mensajeUsuario = "No ha sido posible llevar a cabo la eliminacion de la informacion de los paises. Por favor intente de nuevo y en caso de pérsisitir el problema, comuniquese con el administrador de la Tienda Chepito...";
-            var mensajeTecnico = "Se ha presentado un problema preparando la sentancia SQL de consulta de los paises en la base de datos Azure SQL";
+            var mensajeUsuario = "No ha sido posible llevar a cabo la consulta de la informacion de los paises. Por favor intente de nuevo y en caso de pérsisitir el problema, comuniquese con el administrador de la Tienda Chepito...";
+            var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00029);
 
             throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario, exception);
         }
 
         catch (final Exception exception){
             var mensajeUsuario = "No ha sido posible llevar a cabo la consulta de la informacion del nuevo pais. Por favor intente de nuevo y en caso de pérsisitir el problema, comuniquese con el administrador de la Tienda Chepito...";
-            var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00028);
+            var mensajeTecnico = MessageCatalogStrategy.getContenidoMensaje(CodigoMensaje.M00030);
 
             throw new DataTiendaChepitoException(mensajeTecnico, mensajeUsuario, exception);
         }

@@ -11,24 +11,36 @@ import java.util.List;
 
 public final class CiudadDTODomainAssembler implements DTODomainAssembler<CiudadDomain, CiudadDTO> {
 
-    private final DepartamentoDTODomainAssembler departamentoAssembler = new DepartamentoDTODomainAssembler();
+    private static final DTODomainAssembler<CiudadDomain, CiudadDTO> instancia = new CiudadDTODomainAssembler();
+
+    private static final DTODomainAssembler<DepartamentoDomain, DepartamentoDTO> departamentoAssembler = DepartamentoDTODomainAssembler
+            .obtenerInstancia();
+
+    private CiudadDTODomainAssembler(){
+        super();
+    }
+
+    public static final  DTODomainAssembler<CiudadDomain, CiudadDTO> obtenerInstancia(){
+        return instancia;
+    }
 
     @Override
-    public CiudadDomain ensamblarDominio(CiudadDTO dto) {
+    public final CiudadDomain ensamblarDominio( final CiudadDTO dto) {
         var ciudadDtoTmp = ObjectHelper.getObjectHelper().getDefault(dto, new CiudadDTO());
-        DepartamentoDomain departamentoDomain = departamentoAssembler.ensamblarDominio(ciudadDtoTmp.getDepartamento());
+        var departamentoDomain = departamentoAssembler.ensamblarDominio(ciudadDtoTmp.getDepartamento());
+
         return CiudadDomain.crear(ciudadDtoTmp.getId(), ciudadDtoTmp.getNombre(), departamentoDomain);
     }
 
     @Override
-    public CiudadDTO ensamblarDTO(CiudadDomain dominio) {
-        var ciudadDomainTmp = ObjectHelper.getObjectHelper().getDefault(dominio, new CiudadDomain(dominio.getId(), dominio.getNombre(), dominio.getDepartamento()));
-        DepartamentoDTO departamentoDTO = departamentoAssembler.ensamblarDTO(ciudadDomainTmp.getDepartamento());
+    public final CiudadDTO ensamblarDTO( final CiudadDomain dominio) {
+        var ciudadDomainTmp = ObjectHelper.getObjectHelper().getDefault(dominio, CiudadDomain.crear());
+        var departamentoDTO = departamentoAssembler.ensamblarDTO(ciudadDomainTmp.getDepartamento());
         return CiudadDTO.build().setId(ciudadDomainTmp.getId()).setNombre(ciudadDomainTmp.getNombre()).setDepartamento(departamentoDTO);
     }
 
     @Override
     public List<CiudadDTO> ensamblarListaDTO(List<CiudadDomain> listaDominios) {
-        return List.of();
+        return null;
     }
 }

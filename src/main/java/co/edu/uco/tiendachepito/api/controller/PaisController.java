@@ -1,7 +1,7 @@
 package co.edu.uco.tiendachepito.api.controller;
 
 import co.edu.uco.tiendachepito.api.response.pais.PaisResponse;
-import co.edu.uco.tiendachepito.business.fachade.concrete.ConsultarPaisesFachadaImpl;
+import co.edu.uco.tiendachepito.business.facade.concrete.ConsultarPaisesFachadaImpl;
 import co.edu.uco.tiendachepito.crosscutting.exceptions.TiendaChepitoException;
 import co.edu.uco.tiendachepito.crosscutting.helpers.NumericHelper;
 import co.edu.uco.tiendachepito.dto.PaisDTO;
